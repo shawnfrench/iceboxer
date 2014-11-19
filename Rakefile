@@ -11,20 +11,20 @@ def close_issues
   end
 
   Octokit.access_token = ENV['GITHUB_API_TOKEN']
-  REPO=ENV["ICEBOXER_REPO"]
+  $repo = ENV["ICEBOXER_REPO"]
 
-  CLOSERS=[
+  closers = [
     {
-      :search => "repo:#{REPO} is:open created:<#{12.months.ago.to_date.to_s} updated:<#{2.months.ago.to_date.to_s}",
+      :search => "repo:#{repo} is:open created:<#{12.months.ago.to_date.to_s} updated:<#{2.months.ago.to_date.to_s}",
       :message => "This is older than a year and has not been touched in 2 months."
     },
     {
-      :search => "repo:#{REPO} is:open updated:<#{6.months.ago.to_date.to_s}",
+      :search => "repo:#{repo} is:open updated:<#{6.months.ago.to_date.to_s}",
       :message => "This has not been touched in 6 months."
     }
   ]
 
-  CLOSERS.each do |closer|
+  closers.each do |closer|
     issues = Octokit.search_issues(closer[:search])
     puts "Found #{issues.items.count} issues to close:"
     issues.items.each do |issue|
@@ -38,14 +38,14 @@ def close_issues
 end
 
 def already_iceboxed?(issue)
-  comments = Octokit.issue_comments(REPO, issue)
+  comments = Octokit.issue_comments($repo, issue)
   comments.any? { |c| c.body =~ /Icebox/ }
 end
 
 def icebox(issue, reason)
-  Octokit.add_labels_to_an_issue(REPO, issue, ["Icebox"])
-  Octokit.add_comment(REPO, issue, message(reason))
-  Octokit.close_issue(REPO, issue)
+  Octokit.add_labels_to_an_issue($repo, issue, ["Icebox"])
+  Octokit.add_comment($repo, issue, message(reason))
+  Octokit.close_issue($repo, issue)
 
   puts "Iceboxed #{issue}!"
 end
