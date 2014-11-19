@@ -31,7 +31,6 @@ def close_issues
       unless already_iceboxed?(issue.number)
         puts "Closing #{issue.number}: #{issue.title}"
         icebox(issue.number, closer)
-        exit
       end
     end
   end
