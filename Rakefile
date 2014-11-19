@@ -51,7 +51,7 @@ end
 
 def message(reason)
 <<-MSG
-![picture of the iceboxer](https://cloud.githubusercontent.com/assets/699550/5100358/75aa3366-6f73-11e4-852d-ad3205f79e3f.png)
+![picture of the iceboxer](https://cloud.githubusercontent.com/assets/699550/5107249/0585a470-6fce-11e4-8190-4413c730e8d8.png)
 
 #{reason[:message]}
 
