@@ -1,6 +1,6 @@
 ICEBOXER
 
-![picture of the iceboxer](https://cloud.githubusercontent.com/assets/699550/5100197/2541efe2-6f71-11e4-9e04-92ff058c213c.png)
+![picture of the iceboxer](https://cloud.githubusercontent.com/assets/699550/5100358/75aa3366-6f73-11e4-852d-ad3205f79e3f.png)
 
 ICEBOXER systemizes a hard decision - when is a valid issue not important enough to be fixed? 
 
