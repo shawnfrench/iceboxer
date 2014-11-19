@@ -1,30 +1,29 @@
 require 'octokit'
 require 'active_support/all'
 
-unless ENV['GITHUB_API_TOKEN'].present?
-  raise "Set GITHUB_API_TOKEN with a token with repo access"
-end
-
-unless ENV['ICEBOXER_REPO'].present?
-  raise "Set ICEBOXER_REPO to repo like 'org/reponame'"
-end
-
-REPO=ENV["ICEBOXER_REPO"]
-
-CLOSERS=[
-  {
-    :search => "repo:#{REPO} is:open created:<#{12.months.ago.to_date.to_s} updated:<#{2.months.ago.to_date.to_s}",
-    :message => "This is older than a year and has not been touched in 2 months."
-  },
-  {
-    :search => "repo:#{REPO} is:open updated:<#{6.months.ago.to_date.to_s}",
-    :message => "This has not been touched in 6 months."
-  }
-]
-
-Octokit.access_token = ENV['GITHUB_API_TOKEN']
-
 def close_issues
+  unless ENV['GITHUB_API_TOKEN'].present?
+    raise "Set GITHUB_API_TOKEN with a token with repo access"
+  end
+
+  unless ENV['ICEBOXER_REPO'].present?
+    raise "Set ICEBOXER_REPO to repo like 'org/reponame'"
+  end
+
+  Octokit.access_token = ENV['GITHUB_API_TOKEN']
+  REPO=ENV["ICEBOXER_REPO"]
+
+  CLOSERS=[
+    {
+      :search => "repo:#{REPO} is:open created:<#{12.months.ago.to_date.to_s} updated:<#{2.months.ago.to_date.to_s}",
+      :message => "This is older than a year and has not been touched in 2 months."
+    },
+    {
+      :search => "repo:#{REPO} is:open updated:<#{6.months.ago.to_date.to_s}",
+      :message => "This has not been touched in 6 months."
+    }
+  ]
+
   CLOSERS.each do |closer|
     issues = Octokit.search_issues(closer[:search])
     puts "Found #{issues.items.count} issues to close:"
