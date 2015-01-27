@@ -3,7 +3,10 @@ require 'active_support/all'
 
 module Iceboxer
 
-  operations = [Iceboxer::Icebox, Iceboxer::Deprecate]
+  @@operations = [
+    Iceboxer::Icebox, 
+    Iceboxer::Deprecate
+  ]
 
   def self.run
     unless ENV['GITHUB_API_TOKEN'].present?
@@ -17,7 +20,7 @@ module Iceboxer
     Octokit.access_token = ENV['GITHUB_API_TOKEN']
     repository = ENV["ICEBOXER_REPO"]
 
-    operations.each do |op|
+    @@operations.each do |op|
       op.new(repository).perform
     end
   end
