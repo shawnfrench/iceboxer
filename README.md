@@ -8,6 +8,8 @@ To be productive, we must default to no.  Issues should be considered irrelevant
 
 So lets close some issues.
 
+ICEBOXER:
+
 ICEBOXER finds:
 - issues older than a year, with no updates in last 2 months
 - issues not touched in the last 6 months
@@ -17,3 +19,8 @@ To those issues, ICEBOXER:
 - tags the issue with the label 'Icebox'
 - closes the issue
 
+DEPRECATOR:
+
+deprecator finds issues labelled 'deprecation' that have a date in the title somewhere.
+
+Once the date has passed, it adds a comment telling the person to deal with the deprecation.
