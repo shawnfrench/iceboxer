@@ -48,7 +48,7 @@ module Iceboxer
     end
 
     def message(reason)
-      <<-MSG
+      <<-MSG.strip_heredoc
       ![picture of the iceboxer](https://cloud.githubusercontent.com/assets/699550/5107249/0585a470-6fce-11e4-8190-4413c730e8d8.png)
 
       #{reason[:message]}
