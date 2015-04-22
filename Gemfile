@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-gem 'byebug'
 
-gem 'rake'
-gem 'octokit'
-gem 'activesupport'
+gemspec
+
+group :test, :debug do
+  gem "byebug"
+end
