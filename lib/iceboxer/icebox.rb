@@ -51,14 +51,13 @@ module Iceboxer
       <<-MSG.strip_heredoc
       ![picture of the iceboxer](https://cloud.githubusercontent.com/assets/699550/5107249/0585a470-6fce-11e4-8190-4413c730e8d8.png)
 
-      #{reason[:message]}
-
-      I am closing this as it is stale.
+      I am closing this because: #{reason[:message]}
 
       I have applied the tag 'Icebox' so you can still see it by querying closed issues.
 
-      Developers: Feel free to reopen if you and your team lead agree it is high priority and will be addressed in the next month.
+      You may reopen if you and the team lead agree it is high priority and will be addressed in the next month.
 
+      See https://vault.shopify.com/Product-@-Platform for more.
       MSG
     end
   end
