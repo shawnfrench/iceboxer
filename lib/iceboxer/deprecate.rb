@@ -18,7 +18,7 @@ module Iceboxer
       issues = Octokit.search_issues("repo:#{@repo} is:open label:Deprecation")
       issues.items.each do |issue|
         begin
-          date = issue.title.to_date
+          date = issue.title[/\d\d\d\d.\d?\d.\d?\d/, 0].to_date
           if date < Date.today
             Octokit.add_comment(@repo, issue.number, deprecate(user_string(issue), (Date.today - date).to_i))
           end
